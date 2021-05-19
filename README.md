@@ -5,7 +5,7 @@ A simple but messy application of Tkinter and pycryptodome to make a password ma
 1. First make a master account for the password manager by running the "Add Master Account.py" script
 2. Nothing more just run the "Main.py" , login with the master account name and password and Never Forget Your Passwords Again!
 
-## Prerequisites
+## Prerequisites-
 You need to install the following packages to use the program-
 1. Pycryptodome
 2. Pyperclip
