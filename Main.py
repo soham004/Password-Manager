@@ -8,8 +8,6 @@ import pickle
 import pyperclip
 import threading
 
-
-dark_mode = True
 password = ""
 
 
