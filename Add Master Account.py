@@ -1,12 +1,12 @@
 import os
-
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 import pickle
 import getpass
 
 
-
+if 'data' not in os.listdir():
+    os.mkdir(./data)
 
 
 def encrypt(info):
