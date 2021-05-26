@@ -34,6 +34,7 @@ def encrypt(info):
 
 password = ""
 
+fg = 'snow'
 
 showing_password = False
 new_showing_password = False
@@ -63,6 +64,7 @@ if f"{master_acc_name}.txt" in file_list:
                 add_account_pass.place(x=acc_id_x, y=(acc_id_y + 70), width=300)
                 add_account_pass_error.place(x=(acc_id_x + 270), y=(acc_id_y + 70))
                 add_account_pass_label.place(x=acc_id_x, y=(acc_id_y + 45))
+                add_account_pass_gen_button.place(x=(acc_id_x + 310), y=(acc_id_y + 70))
 
                 add_add_button.place(x=(acc_id_x + 210), y=(acc_id_y + 120))
                 add_cancel_button.place(x=(acc_id_x + 210), y=(acc_id_y + 170))
@@ -78,6 +80,7 @@ if f"{master_acc_name}.txt" in file_list:
                 add_account_pass.place_forget()
                 add_account_pass_error.place_forget()
                 add_account_pass_label.place_forget()
+                add_account_pass_gen_button.place_forget()
 
                 add_add_button.place_forget()
                 add_cancel_button.place_forget()
@@ -109,11 +112,22 @@ if f"{master_acc_name}.txt" in file_list:
                 account_password = encrypt(account_password)
                 with open(f"./data/{master_acc_name}/{master_acc_name.lower()}_data.txt", "br") as file:
                     temp_dict = pickle.load(file)
-                adding_dict = {domain_name: {account_name: account_password}}
-                per_dict = merge(temp_dict, adding_dict)
-                with open(f"./data/{master_acc_name}/{master_acc_name.lower()}_data.txt", "bw") as file:
-                    pickle.dump(per_dict, file)
-                messagebox.showinfo("Info", "Domain Added Successfully.")
+                if domain_name not in temp_dict:
+                    adding_dict = {domain_name: {account_name: account_password}}
+                    per_dict = merge(temp_dict, adding_dict)
+                    with open(f"./data/{master_acc_name}/{master_acc_name.lower()}_data.txt", "bw") as file:
+                        pickle.dump(per_dict, file)
+                    messagebox.showinfo("Info", "Domain Added Successfully.")
+                else:
+                    confirmation = messagebox.askquestion("Confirmation", "Domain already exists do you want to overwrite it?\n(All your previous passwords will be lost)", icon="warning")
+                    if confirmation == "yes":
+                        adding_dict = {domain_name: {account_name: account_password}}
+                        per_dict = merge(temp_dict, adding_dict)
+                        with open(f"./data/{master_acc_name}/{master_acc_name.lower()}_data.txt", "bw") as file:
+                            pickle.dump(per_dict, file)
+                        messagebox.showinfo("Info", "Domain Added Successfully.")
+                    else:
+                        messagebox.showinfo("Info", "Domain Addition Cancelled.")
                 show_hide_add_new_screen(1)
                 show_hide_intro_screen(0)
             elif domain_name == "":
@@ -185,18 +199,18 @@ if f"{master_acc_name}.txt" in file_list:
                 show_hide_intro_screen(1)
                 add_new_domain_label.place(x=acc_id_x, y=(acc_id_y - 50))
                 add_new_domain_entry.place(x=acc_id_x, y=(acc_id_y - 20), width=300)
-                add_new_account_id_label.place(x=acc_id_x, y=acc_id_y + 20)
-                add_new_account_id.place(x=acc_id_x, y=(acc_id_y + 45), width=300)
-                add_new_account_id_error.place(x=(acc_id_x + 270), y=(acc_id_y + 40))
-                add_new_account_pass.place(x=acc_id_x, y=(acc_id_y + 110), width=300)
-                add_new_account_pass_error.place(x=(acc_id_x + 270), y=(acc_id_y + 70))
-                add_new_account_pass_label.place(x=acc_id_x, y=(acc_id_y + 85))
-                add_new_account_pass_gen_button.place(x=(acc_id_x + 310), y=(acc_id_y + 110))
+                add_new_account_id_label.place(x=acc_id_x, y=acc_id_y + 30)
+                add_new_account_id.place(x=acc_id_x, y=(acc_id_y + 55), width=300)
+                add_new_account_id_error.place(x=(acc_id_x + 270), y=(acc_id_y + 50))
+                add_new_account_pass.place(x=acc_id_x, y=(acc_id_y + 130), width=300)
+                add_new_account_pass_error.place(x=(acc_id_x + 270), y=(acc_id_y + 90))
+                add_new_account_pass_label.place(x=acc_id_x, y=(acc_id_y + 105))
+                add_new_account_pass_gen_button.place(x=(acc_id_x + 310), y=(acc_id_y + 130))
 
-                add_new_add_button.place(x=(acc_id_x + 210), y=(acc_id_y + 170))
-                add_new_cancel_button.place(x=(acc_id_x + 210), y=(acc_id_y + 220))
-                add_new_show_password_label.place(x=acc_id_x - 20, y=(acc_id_y + 150))
-                add_new_show_password_checkbutton.place(x=acc_id_x + 115, y=(acc_id_y + 150))
+                add_new_add_button.place(x=(acc_id_x + 210), y=(acc_id_y + 190))
+                add_new_cancel_button.place(x=(acc_id_x + 210), y=(acc_id_y + 240))
+                add_new_show_password_label.place(x=acc_id_x - 20, y=(acc_id_y + 180))
+                add_new_show_password_checkbutton.place(x=acc_id_x + 115, y=(acc_id_y + 180))
 
             elif ids == 1:
                 add_new_domain_entry.delete(0, "end")
@@ -274,6 +288,7 @@ if f"{master_acc_name}.txt" in file_list:
         style = ttk.Style(root)
         root.tk.call('source', 'azure-dark.tcl')
         style.theme_use('azure-dark')
+        root.iconbitmap("icon.ico")
         acc_id_x = 420
         acc_id_y = 250
         a = BooleanVar()
@@ -314,7 +329,7 @@ if f"{master_acc_name}.txt" in file_list:
         )
         add_account_id = ttk.Entry(
             root,
-            foreground="gray11"
+            foreground=fg
         )
         add_account_id_error = ttk.Label(
             root,
@@ -336,7 +351,7 @@ if f"{master_acc_name}.txt" in file_list:
         add_account_pass = ttk.Entry(
             root,
             show="*",
-            foreground="gray11"
+            foreground=fg
         )
         add_account_pass_error = ttk.Label(
             root,
@@ -382,7 +397,7 @@ if f"{master_acc_name}.txt" in file_list:
         )
         add_new_domain_entry = ttk.Entry(
             root,
-            foreground="gray11"
+            foreground=fg
         )
         add_new_account_pass_gen_button = ttk.Button(
             root,
@@ -397,7 +412,7 @@ if f"{master_acc_name}.txt" in file_list:
         )
         add_new_account_id = ttk.Entry(
             root,
-            foreground="gray11"
+            foreground=fg
         )
         add_new_account_id_error = ttk.Label(
             root,
@@ -414,7 +429,7 @@ if f"{master_acc_name}.txt" in file_list:
         add_new_account_pass = ttk.Entry(
             root,
             show="*",
-            foreground="gray11"
+            foreground=fg
         )
         add_new_account_pass_error = ttk.Label(
             root,
