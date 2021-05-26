@@ -10,6 +10,7 @@ import threading
 
 password = ""
 
+fg = 'snow'
 
 acc_id_x = 420
 acc_id_y = 250
@@ -144,6 +145,12 @@ def copy_password():
     main_password = raw_password[1]
     pyperclip.copy(main_password)
 
+def copy_account_id():
+    raw_account = password_list.get(ACTIVE)
+    raw_account = str(raw_account).split("->")
+    main_account = raw_account[0]
+    pyperclip.copy(main_account)
+
 
 def main_screen_done_function():
     show_hide_main_screen(1)
@@ -169,7 +176,12 @@ if __name__ == '__main__':
     # root.config(background='gray11')
     root.resizable(False, False)
     style = ttk.Style(root)
+    root.iconbitmap("icon.ico")
+
+# Import the tcl file
     root.tk.call('source', 'azure-dark.tcl')
+
+# Set the theme with the theme_use method
     style.theme_use('azure-dark')
 
     # Login Page setup start
@@ -185,12 +197,12 @@ if __name__ == '__main__':
     master_account_id_label = ttk.Label(
         login_frame,
         text="Master Account ID:",
-        # fg="snow"
+        foreground=fg
     )
 
 
 
-    master_account_id = ttk.Entry(login_frame, foreground="gray11")
+    master_account_id = ttk.Entry(login_frame, foreground=fg)
     master_account_id_error = ttk.Label(
         login_frame,
         text="",
@@ -206,7 +218,7 @@ if __name__ == '__main__':
     master_account_pass = ttk.Entry(
         login_frame,
         show="*",
-        foreground="gray11"
+        foreground=fg
     )
     master_account_pass.bind('<Return>', master_login)  # Binding enter key to login function
     master_account_id.bind('<Return>', master_login)  # Binding enter key to login function
@@ -317,13 +329,21 @@ if __name__ == '__main__':
     )
     password_list.config(yscrollcommand=password_screen_scrollbar.set)
     password_screen_scrollbar.config(command=password_list.yview)
-    copy_button = ttk.Button(
+    copy_password_button = ttk.Button(
         password_screen,
         text="Copy Password to Clipboard",
         # bg="gray11",
         # fg="snow",
         # font=("", 10),
         command=copy_password
+    )
+    copy_account_id_button = ttk.Button(
+        password_screen,
+        text="Copy Account ID to Clipboard",
+        # bg="gray11",
+        # fg="snow",
+        # font=("", 10),
+        command=copy_account_id
     )
     password_done_button = ttk.Button(
         password_screen,
@@ -362,10 +382,11 @@ if __name__ == '__main__':
     del_accounts_button.place(x=900, y=350)
     done_button.place(x=900, y=400)
 
-    password_done_button.place(x=900, y=250)
+    password_done_button.place(x=900, y=300)
     password_list.place(x=10, y=70)
     password_screen_scrollbar.place(x=815, y=70, width=20, height=655)
-    copy_button.place(x=900, y=200)
+    copy_password_button.place(x=900, y=250)
+    copy_account_id_button.place(x=900, y=200)
 
 
 
