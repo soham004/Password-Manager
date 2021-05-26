@@ -54,6 +54,7 @@ if f"{master_acc_name}.txt" in file_list:
         style = ttk.Style(root)
         root.tk.call('source', 'azure-dark.tcl')
         style.theme_use('azure-dark')
+        root.iconbitmap("icon.ico")
 
 
         def show_hide_first_screen(opinion):  # the screen that appears at first with list of domains
