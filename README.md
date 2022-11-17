@@ -16,7 +16,7 @@ You need to install the following packages to use the program-
 
 Run the following command in the shell to install the required packages:-
 ```sh
-   pip install --upgrade pycryptodome pyperclip 
+   pip install --upgrade pycryptodome pyperclip tkinter
 ```
 
 ### Pros-
