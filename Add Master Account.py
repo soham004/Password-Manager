@@ -6,7 +6,7 @@ import getpass
 
 
 if 'data' not in os.listdir():
-    os.mkdir(./data)
+    os.mkdir("./data")
 
 
 def encrypt(info):

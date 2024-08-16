@@ -52,8 +52,8 @@ if f"{master_acc_name}.txt" in file_list:
         # root.config(background='gray11')
         root.title("Delete Account(s)")
         style = ttk.Style(root)
-        root.tk.call('source', 'azure-dark.tcl')
-        style.theme_use('azure-dark')
+        root.tk.call('source', 'azure.tcl')
+        root.tk.call("set_theme", "dark")
         root.iconbitmap("icon.ico")
 
 

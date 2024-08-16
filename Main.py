@@ -179,7 +179,9 @@ if __name__ == '__main__':
     root.iconbitmap("icon.ico")
 
 # Import the tcl file
-    root.tk.call('source', 'azure-dark.tcl')
+    root.tk.call('source', 'azure.tcl')
+    root.tk.call("set_theme", "dark")
+    #root.tk.call('source', 'azure-dark.tcl')
 
 # Set the theme with the theme_use method
     style.theme_use('azure-dark')
