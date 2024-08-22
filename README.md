@@ -10,6 +10,8 @@ A simple but messy application of Tkinter and pycryptodome to make a password ma
 5. To generate a strong password press the "Generate Password" button beside the password input field.
 
 ### Prerequisites-
+You should have python 3.x installed
+
 You need to install the following packages to use the program-
 1. Pycryptodome
 2. Pyperclip
