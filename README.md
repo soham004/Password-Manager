@@ -1,5 +1,5 @@
 # Password-Manager
-A simple but messy application of Tkinter and pycryptodome to make a password manager in python
+A simple application of Tkinter and pycryptodome to make a password manager in python
 
 
 ### Usage-
@@ -32,7 +32,6 @@ pip install --upgrade pycryptodome pyperclip tk
 
 ### Cons-
 1. This DOES NOT makes any backup of your passwords so you have to make backups yourself(just copy the "data" folder to a safe place).
-2. I have very low experience in coding as I am only 16 years old, so I don't think this is the best way to do it(this will definately get better with time).
 3. There are some known issues
 
 ## Known Issues-
